@@ -1,5 +1,7 @@
 ﻿using SentenceBuilderWebApp.APIManager.Interface;
 using SentenceBuilderWebApp.Models;
+using SentenceBuilderWebApp.Models.BaseResponse;
+using SentenceBuilderWebApp.Models.DTOModels;
 
 namespace SentenceBuilderWebApp.APIManager.Service
 {
@@ -25,6 +27,11 @@ namespace SentenceBuilderWebApp.APIManager.Service
         public async Task<List<WordType>> GetWordTypesAsync()
         {
             return await _api.GetAllwordTypesAsync();
+        }
+
+        public async Task<BaseResponse> AddWord(WordDTOCreate word)
+        {
+            return await _api.AddWord(word);
         }
     }
 }

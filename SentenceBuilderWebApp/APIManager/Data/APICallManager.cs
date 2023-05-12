@@ -5,6 +5,7 @@ using System.Net.Http.Json;
 using SentenceBuilderWebApp.APIManager.Interface;
 using SentenceBuilderWebApp.Pages;
 using static SentenceBuilderWebApp.Models.Enums;
+using SentenceBuilderWebApp.Models.DTOModels;
 
 namespace SentenceBuilderWebApp.APIManager.Data
 {
@@ -62,7 +63,7 @@ namespace SentenceBuilderWebApp.APIManager.Data
             try
             {
                 List<WordType> WordTypes = new List<WordType>();
-                var returnData = await _httpClient.GetFromJsonAsync<BaseResponse<List<WordType>>>($"WordType/GetAllWordTypes/?api_key=295d8839-ce36-4606-a533-76a0250a5048");
+                var returnData = await _httpClient.GetFromJsonAsync<BaseResponse<List<WordType>>>($"WordType/GetAllWordTypes?api_key=295d8839-ce36-4606-a533-76a0250a5048");
 
                 if (returnData.Success)
                 {
@@ -72,6 +73,27 @@ namespace SentenceBuilderWebApp.APIManager.Data
                 return WordTypes;
             }
             catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
+        public async Task<BaseResponse> AddWord(WordDTOCreate word)
+        {
+            try
+            {
+                var addedSuccessfully = new BaseResponse();
+                var returnData = await _httpClient.PostAsJsonAsync<WordDTOCreate>($"Words/AddWord?api_key=295d8839-ce36-4606-a533-76a0250a5048", word);
+
+                if(returnData.IsSuccessStatusCode)
+                {
+                    addedSuccessfully.Success = true;
+                    addedSuccessfully.Message = "Added Word Successfully!";
+                }
+
+                return addedSuccessfully;
+            }
+            catch(Exception ex)
             {
                 throw;
             }

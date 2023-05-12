@@ -1,0 +1,113 @@
+﻿@page "/addword"
+@using SentenceBuilderWebApp.Models;
+@using SentenceBuilderWebApp.Models.DTOModels;
+@inject SentenceBuilderWebApp.APIManager.Service.APICallService api;
+@inject NavigationManager navigate;
+
+<div class="modal" data-bs-backdrop="static" id="addWordModal" style="width: 75% !important; height: 75%; display:block;">
+    <div class="modal-dialog modal-dialog-scrollable" role="document" style="width: 75%!important;max-width: 75% !important; height: 75%;">
+        <div class="modal-content" style="width: 100% !important; height: 75%;">
+            <div class="modal-header">
+                <h5 class="modal-title">
+                    Add Word
+                </h5>
+                <button type="button" class="close cp-btn btn-danger" aria-label="close" @onclick="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <EditForm EditContext="@editContext" OnValidSubmit="Addword" Context="AddNewWordContext">
+            <DataAnnotationsValidator />
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col">
+                            <h5>Word Type</h5>
+                            <InputSelect ValueExpression="@(() => createWord.WordTypeId)" Value="@createWord.WordTypeId" ValueChanged="@((int value) => WordTypeChange(value))" class="form-select" >
+                                <option>Please Select a Word Type</option>
+                                @if(wordType != null || wordType.Count > 0)
+                                {
+                                    @foreach(var item in wordType)
+                                    {
+                                        <option value="@item.WordTypeId">@item.WordTypeDesc</option>
+                                    }
+                                }
+                            </InputSelect>
+                            <ValidationMessage For=@(() => createWord.WordTypeId) />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <h5>Word</h5>
+                            <InputText @bind-value="@createWord.Word" ValueExpression="@(() => createWord.Word)" class="form-control" />
+                            <ValidationMessage For=@(() => createWord.Word) />
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <div class="row">
+                        <div class="col">
+                            <button type="submit" class="btn btn-primary">Add</button>
+                            <button class="btn btn-dark" @onclick="Close">Cancel</button>
+                        </div>
+                    </div>
+                </div>
+            </EditForm>
+        </div>
+    </div>
+</div>
+
+@code {
+    public List<WordType> wordType { get; set; } = new List<WordType>();
+    private WordDTOCreate createWord = new WordDTOCreate();
+    private EditContext editContext;
+
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            editContext = new(createWord);
+            wordType = await api.GetWordTypesAsync();
+        }
+        catch(Exception ex)
+        {
+            throw;
+        }
+    }
+
+    async Task WordTypeChange(int value)
+    {
+        try
+        {
+            createWord.WordTypeId = value;
+        }
+        catch (Exception ex)
+        {
+            //add toastie
+            throw;
+        }
+    }
+
+    void Close()
+    {
+        navigate.NavigateTo("/words");
+    }
+
+    public async Task Addword()
+    {
+        try
+        {   
+            var response = await api.AddWord(createWord);
+
+            if(response.Success)
+            {
+                //display success toastie
+                navigate.NavigateTo("/words");
+            }
+            
+        }
+        catch(Exception ex)
+        {
+            throw;
+        }
+    }
+
+}
