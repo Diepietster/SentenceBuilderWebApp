@@ -1,0 +1,76 @@
+﻿@page "/words"
+@using SentenceBuilderWebApp.Models;
+@inject SentenceBuilderWebApp.APIManager.Service.APICallService api;
+
+<PageTitle>Words</PageTitle>
+
+<h1>Words</h1>
+<div>
+    <label>Select Word Type: </label>
+    @if (WordTypes != null)
+    {
+        <select class="form-select" @onchange="(e)=>WordTypeChange(e)">
+            <option value="">Please select word type</option>
+            @foreach(var type in WordTypes)
+            {
+                <option value="@type.WordTypeId">@type.WordTypeDesc</option>
+            }
+        </select>
+    }
+
+    @if(getWords)
+    {
+        @if (words == null || words.Count <= 0)
+        {
+            <p><em>Loading...</em></p>
+        }
+        else
+        {
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Word</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var word in words)
+                    {
+                        <tr>
+                            <td>@word.WordId</td>
+                            <td>@word.Word</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+    }
+</div>
+
+@code {
+    public List<Words> words { get; set; } = new();
+    public List<WordType> WordTypes { get; set; } = new();
+    public int selectedWordType { get; set; }
+    public bool getWords = false;
+
+    protected override async Task OnInitializedAsync()
+    {
+        WordTypes = await api.GetWordTypesAsync();
+    }
+
+    async Task WordTypeChange(ChangeEventArgs e)
+    {
+        try
+        {
+            getWords = true;
+            selectedWordType = Convert.ToInt32(e.Value);
+            words = await api.GetWordsByTypeAsync(selectedWordType);
+        }
+        catch (Exception ex)
+        {
+            //add toastie
+            throw;
+        }
+    }
+
+}

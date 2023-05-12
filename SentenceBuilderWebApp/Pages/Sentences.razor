@@ -1,0 +1,52 @@
+﻿@page "/sentences"
+@using SentenceBuilderWebApp.Models;
+@using SentenceBuilderWebApp.Models.BaseResponse;
+@inject SentenceBuilderWebApp.APIManager.Service.APICallService api;
+
+<PageTitle>AllSentences</PageTitle>
+
+<h1>Sentences</h1>
+
+@if (sentences == null || sentences.Count <= 0)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Sentence</th>
+                <th>Date Create</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var sentence in sentences)
+            {
+                <tr>
+                    <td>@sentence.SentenceId</td>
+                    <td>@sentence.SentenceDesc</td>
+                    <td>@sentence.SentenceCreatedOn</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+    private List<Sentence> sentences { get; set; } = new List<Sentence>();
+
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            sentences = await api.GetSentences();
+        }
+        catch(Exception ex)
+        {
+            //add toastie
+            throw;
+        }
+    }
+}
