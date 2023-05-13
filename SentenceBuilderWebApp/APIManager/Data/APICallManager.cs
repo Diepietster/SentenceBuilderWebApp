@@ -4,7 +4,6 @@ using static System.Net.WebRequestMethods;
 using System.Net.Http.Json;
 using SentenceBuilderWebApp.APIManager.Interface;
 using SentenceBuilderWebApp.Pages;
-using static SentenceBuilderWebApp.Models.Enums;
 using SentenceBuilderWebApp.Models.DTOModels;
 
 namespace SentenceBuilderWebApp.APIManager.Data
