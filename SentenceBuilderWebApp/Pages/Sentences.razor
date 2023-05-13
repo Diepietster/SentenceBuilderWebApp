@@ -2,51 +2,88 @@
 @using SentenceBuilderWebApp.Models;
 @using SentenceBuilderWebApp.Models.BaseResponse;
 @inject SentenceBuilderWebApp.APIManager.Service.APICallService api;
+@inject IToastService toast;
 
 <PageTitle>AllSentences</PageTitle>
 
-<h1>Sentences</h1>
+<div class="card">
+    <div>
+        <h1 style="text-align:center">Sentences</h1>
+    </div>
+</div>
 
-@if (sentences == null || sentences.Count <= 0)
-{
-    <p><em>Loading...</em></p>
-}
-else
-{
-    <table class="table">
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Sentence</th>
-                <th>Date Create</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var sentence in sentences)
-            {
-                <tr>
-                    <td>@sentence.SentenceId</td>
-                    <td>@sentence.SentenceDesc</td>
-                    <td>@sentence.SentenceCreatedOn</td>
-                </tr>
-            }
-        </tbody>
-    </table>
-}
+<br />
+<a class="btn btn-success" href="/buildsentence">Build New Sentence</a>
+<br />
+<br />
+
+<div class="card">
+    <div style="margin-top: 20px; margin-left: 20px; margin-right: 20px; margin-bottom: 20px;">
+        @if (sentencesToDisplay == null || sentencesToDisplay.Count <= 0)
+        {
+            <p><em>Loading...</em></p>
+        }
+        else
+        {
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Sentence</th>
+                        <th>Date Create</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var sentence in sentencesToDisplay)
+                    {
+                        <tr>
+                            <td>@sentence.SentenceId</td>
+                            <td>@sentence.SentenceDesc</td>
+                            <td>@sentence.SentenceCreatedOn</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+    </div>
+</div>
+<br />
+<div>
+    @if(totalPages > 1)
+    {
+        @for(int i = 0; i < totalPages; i++)
+        {
+            var displayNum = i + 1;
+            <button class="btn btn-primary" style="width: 40px; height: 40px;" @onclick="(() => Paging(displayNum))">@displayNum</button>
+        }
+    }
+</div>
 
 @code {
     private List<Sentence> sentences { get; set; } = new List<Sentence>();
+    private List<Sentence> sentencesToDisplay { get; set; } = new List<Sentence>();
+    public int pageNumber { get; set; } = 1;
+    public int pagesize { get; set; } = 10;
+    public int totalPages { get; set; }
 
     protected override async Task OnInitializedAsync()
     {
         try
         {
-            sentences = await api.GetSentences();
+            await Paging(pageNumber);
         }
         catch(Exception ex)
         {
-            //add toastie
+            toast.ShowError(ex.Message);
             throw;
         }
+    }
+
+    public async Task Paging(int pageNumber)
+    {
+        sentences = await api.GetSentences();
+        totalPages = sentences.Count % pagesize != 0 ? sentences.Count / pagesize + 1 : sentences.Count / pagesize;
+
+        sentencesToDisplay = sentences.Skip((pageNumber - 1) * pagesize).Take(pagesize).ToList();
     }
 }

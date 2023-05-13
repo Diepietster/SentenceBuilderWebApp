@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "vGnWCF+5t2yWPwQgMtKaZIlZv70XAyfNg6XOVc4Qnaj3zznana7D5vgyn9282gQOdHw77lHw/Nd336RIlLVsog==",
+  "dgSpecHash": "p8xRIAxUr3+oHMN05c1CUsq/q10XMwCrADj3EJ/wv1P27jS8DvQbNKxOYdvAMDimF/e4HQPw/VOwwkmoknZfPQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\piete\\OneDrive\\Desktop\\C#_Programs\\SentenceBuilderWebApp\\SentenceBuilderWebApp\\SentenceBuilderWebApp.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\piete\\.nuget\\packages\\blazored.toast\\4.1.0\\blazored.toast.4.1.0.nupkg.sha512",
     "C:\\Users\\piete\\.nuget\\packages\\microsoft.aspnetcore.authorization\\6.0.15\\microsoft.aspnetcore.authorization.6.0.15.nupkg.sha512",
     "C:\\Users\\piete\\.nuget\\packages\\microsoft.aspnetcore.components\\6.0.15\\microsoft.aspnetcore.components.6.0.15.nupkg.sha512",
     "C:\\Users\\piete\\.nuget\\packages\\microsoft.aspnetcore.components.analyzers\\6.0.15\\microsoft.aspnetcore.components.analyzers.6.0.15.nupkg.sha512",

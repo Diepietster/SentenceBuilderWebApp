@@ -10,5 +10,6 @@ namespace SentenceBuilderWebApp.APIManager.Interface
         Task<List<Words>> GetAllWordsByType(int wordTypeId);
         Task<List<WordType>> GetAllwordTypesAsync();
         Task<BaseResponse> AddWord(WordDTOCreate word);
+        Task<BaseResponse> AddSentence(string sentence);
     }
 }

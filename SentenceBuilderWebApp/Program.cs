@@ -1,3 +1,4 @@
+using Blazored.Toast;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using SentenceBuilderWebApp;
@@ -9,7 +10,8 @@ var builder = WebAssemblyHostBuilder.CreateDefault(args);
 builder.RootComponents.Add<App>("#app");
 builder.RootComponents.Add<HeadOutlet>("head::after");
 
-builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri("https://localhost:7163/api/") });
+builder.Services.AddBlazoredToast();
+builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri("https://localhost:44376/api/") });
 builder.Services.AddScoped<IAPICallManager, APICallManager>();
 builder.Services.AddScoped<APICallService>();
 

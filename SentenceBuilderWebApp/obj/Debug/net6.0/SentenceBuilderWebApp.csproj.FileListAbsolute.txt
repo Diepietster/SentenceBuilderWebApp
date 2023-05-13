@@ -822,3 +822,7 @@ C:\Users\piete\OneDrive\Desktop\C#_Programs\SentenceBuilderWebApp\SentenceBuilde
 C:\Users\piete\OneDrive\Desktop\C#_Programs\SentenceBuilderWebApp\SentenceBuilderWebApp\obj\Debug\net6.0\refint\SentenceBuilderWebApp.dll
 C:\Users\piete\OneDrive\Desktop\C#_Programs\SentenceBuilderWebApp\SentenceBuilderWebApp\obj\Debug\net6.0\SentenceBuilderWebApp.pdb
 C:\Users\piete\OneDrive\Desktop\C#_Programs\SentenceBuilderWebApp\SentenceBuilderWebApp\obj\Debug\net6.0\ref\SentenceBuilderWebApp.dll
+C:\Users\piete\OneDrive\Desktop\C#_Programs\SentenceBuilderWebApp\SentenceBuilderWebApp\bin\Debug\net6.0\wwwroot\_framework\Blazored.Toast.dll
+C:\Users\piete\OneDrive\Desktop\C#_Programs\SentenceBuilderWebApp\SentenceBuilderWebApp\bin\Debug\net6.0\wwwroot\_framework\Blazored.Toast.dll.gz
+C:\Users\piete\OneDrive\Desktop\C#_Programs\SentenceBuilderWebApp\SentenceBuilderWebApp\bin\Debug\net6.0\Blazored.Toast.dll
+C:\Users\piete\OneDrive\Desktop\C#_Programs\SentenceBuilderWebApp\SentenceBuilderWebApp\obj\Debug\net6.0\build-gz\waPd9+g0.gz

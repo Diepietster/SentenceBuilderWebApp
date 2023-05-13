@@ -5,7 +5,7 @@
       "url": "css\/app.css"
     },
     {
-      "hash": "sha256-z8OR40MowJ8GgK6P89Y+hiJK5+cclzFHzLhFQLL92bg=",
+      "hash": "sha256-iRbVc1TXm2jri2iyfJD1t\/+NFrjCu\/5Hbdfd5JoVlZA=",
       "url": "css\/bootstrap\/bootstrap.min.css"
     },
     {
@@ -61,7 +61,7 @@
       "url": "icon-512.png"
     },
     {
-      "hash": "sha256-eewCZxhM7cFCBdL96KDjCdHLyd0jHzGBMHeJP\/P1qXE=",
+      "hash": "sha256-LLnhX9b2fckJpo8xWJ6Nk6gYvWjuFY84DSIj9+gnNeA=",
       "url": "index.html"
     },
     {
@@ -69,12 +69,12 @@
       "url": "manifest.json"
     },
     {
-      "hash": "sha256-yzFf+O\/mlH+Q9klUSqXP2kxGKOUFLPxaww8da8fKhGU=",
-      "url": "sample-data\/weather.json"
+      "hash": "sha256-H\/HU90NHG3BgxNSZngVK+oMNpH4prCPuJWEi\/inS\/f4=",
+      "url": "SentenceBuilderWebApp.styles.css"
     },
     {
-      "hash": "sha256-nnUBH6M26gMX5FN2hJbQK5dzzWLFm9s610tjkkJERpo=",
-      "url": "SentenceBuilderWebApp.styles.css"
+      "hash": "sha256-GXXa2A08YD6PhpIFoBX+kgnsZS1fcddkt\/Sv5IUHdz8=",
+      "url": "_framework\/Blazored.Toast.dll"
     },
     {
       "hash": "sha256-iHLDF8B7pfRTW\/hNQ3ctXZN6PEfTsWrDiTyw1fLNMsI=",
@@ -861,11 +861,11 @@
       "url": "_framework\/icudt_no_CJK.dat"
     },
     {
-      "hash": "sha256-ry07yjH1zmja4dStey+twKrQ6HEnYnQsPCgaHgNzrJc=",
+      "hash": "sha256-kBItN\/ih0onoNbhsywnHTY8hum008hliNONzMSddQRk=",
       "url": "_framework\/SentenceBuilderWebApp.dll"
     },
     {
-      "hash": "sha256-5GNehGMBdMRXK8eQ4s6JCc1AxIWtjklHeSo69L\/15aw=",
+      "hash": "sha256-nK2dVeD1qW1gp5Lax5fZ612miwpCLjLoimxVZc8lsSc=",
       "url": "_framework\/SentenceBuilderWebApp.pdb"
     },
     {
@@ -873,9 +873,13 @@
       "url": "_framework\/blazor.webassembly.js"
     },
     {
-      "hash": "sha256-wFSaQ\/2zutC8bWdN+cjd6GcJAMy353VR44AWXyrecR0=",
+      "hash": "sha256-KTihm4RN6Drzfp9WHvSB7QjWDtd8P13yrGnRnUDJxTA=",
       "url": "_framework\/blazor.boot.json"
+    },
+    {
+      "hash": "sha256-UvwTBwDrCS9yh35f14Sx+NrDIVftgIzc2IyOkol9to0=",
+      "url": "_content\/Blazored.Toast\/Blazored.Toast.bundle.scp.css"
     }
   ],
-  "version": "LfiquawS"
+  "version": "cC99kJO3"
 };

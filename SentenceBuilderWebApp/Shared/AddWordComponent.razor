@@ -3,9 +3,10 @@
 @using SentenceBuilderWebApp.Models.DTOModels;
 @inject SentenceBuilderWebApp.APIManager.Service.APICallService api;
 @inject NavigationManager navigate;
+@inject IToastService toast;
 
-<div class="modal" data-bs-backdrop="static" id="addWordModal" style="width: 75% !important; height: 75%; display:block;">
-    <div class="modal-dialog modal-dialog-scrollable" role="document" style="width: 75%!important;max-width: 75% !important; height: 75%;">
+<div class="modal" data-bs-backdrop="static" id="addWordModal" style="width: 75% !important; height: 75%; display:block; position:relative;">
+    <div class="modal-dialog modal-dialog-scrollable" role="document" style="width: 75%!important;max-width: 75% !important; height: 75%; position:relative;">
         <div class="modal-content" style="width: 100% !important; height: 75%;">
             <div class="modal-header">
                 <h5 class="modal-title">
@@ -15,14 +16,14 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <EditForm EditContext="@editContext" OnValidSubmit="Addword" Context="AddNewWordContext">
+            <EditForm EditContext="@editContext" OnValidSubmit="Addword">
             <DataAnnotationsValidator />
                 <div class="modal-body">
                     <div class="row">
                         <div class="col">
                             <h5>Word Type</h5>
                             <InputSelect ValueExpression="@(() => createWord.WordTypeId)" Value="@createWord.WordTypeId" ValueChanged="@((int value) => WordTypeChange(value))" class="form-select" >
-                                <option>Please Select a Word Type</option>
+                                <option value="">Please Select a Word Type</option>
                                 @if(wordType != null || wordType.Count > 0)
                                 {
                                     @foreach(var item in wordType)
@@ -45,7 +46,7 @@
                 <div class="modal-footer">
                     <div class="row">
                         <div class="col">
-                            <button type="submit" class="btn btn-primary">Add</button>
+                            <button type="submit" class="btn btn-success">Add</button>
                             <button class="btn btn-dark" @onclick="Close">Cancel</button>
                         </div>
                     </div>
@@ -69,7 +70,7 @@
         }
         catch(Exception ex)
         {
-            throw;
+            toast.ShowError(ex.Message);
         }
     }
 
@@ -81,8 +82,7 @@
         }
         catch (Exception ex)
         {
-            //add toastie
-            throw;
+            toast.ShowError(ex.Message);
         }
     }
 
@@ -99,14 +99,14 @@
 
             if(response.Success)
             {
-                //display success toastie
+                toast.ShowSuccess("Added new word!");
                 navigate.NavigateTo("/words");
             }
             
         }
         catch(Exception ex)
         {
-            throw;
+            toast.ShowError(ex.Message);
         }
     }
 

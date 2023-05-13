@@ -33,5 +33,10 @@ namespace SentenceBuilderWebApp.APIManager.Service
         {
             return await _api.AddWord(word);
         }
+
+        public async Task<BaseResponse> CreateSentene(string sentence)
+        {
+            return await _api.AddSentence(sentence);
+        }
     }
 }

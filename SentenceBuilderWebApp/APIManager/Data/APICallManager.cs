@@ -98,5 +98,31 @@ namespace SentenceBuilderWebApp.APIManager.Data
                 throw;
             }
         }
+
+        public async Task<BaseResponse> AddSentence(string sentence)
+        {
+            try
+            {
+                var addedSuccessfully = new BaseResponse();
+                SentenceDTOCreate newSentence = new SentenceDTOCreate
+                {
+                    SentenceDesc = sentence
+                };
+
+                var returnData = await _httpClient.PostAsJsonAsync<SentenceDTOCreate>($"Sentence/CreateSentence?api_key=295d8839-ce36-4606-a533-76a0250a5048", newSentence);
+
+                if (returnData.IsSuccessStatusCode)
+                {
+                    addedSuccessfully.Success = true;
+                    addedSuccessfully.Message = "Added Sentence Successfully!";
+                }
+
+                return addedSuccessfully;
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
     }
 }

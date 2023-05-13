@@ -7,6 +7,7 @@
   "linkerEnabled": false,
   "resources": {
     "assembly": {
+      "Blazored.Toast.dll": "sha256-GXXa2A08YD6PhpIFoBX+kgnsZS1fcddkt\/Sv5IUHdz8=",
       "Microsoft.AspNetCore.Authorization.dll": "sha256-iHLDF8B7pfRTW\/hNQ3ctXZN6PEfTsWrDiTyw1fLNMsI=",
       "Microsoft.AspNetCore.Components.dll": "sha256-yMUQKGGiZLCGNw3RJPaqhOJrCJIPYbgmJ81JNAcRoAE=",
       "Microsoft.AspNetCore.Components.Forms.dll": "sha256-KLb9bb+VZeGmF5nHy9Qh4vpB2VYsD7whNFrRt1EMyAU=",
@@ -196,13 +197,13 @@
       "mscorlib.dll": "sha256-C3gpWQMELcHYfrHU\/1agQUvWTtSNs9Ul2suMxcKFnIc=",
       "netstandard.dll": "sha256-CgGkoZQx73t3qchcsu85kgBcgrjNEOiudArOwKNb18k=",
       "System.Private.CoreLib.dll": "sha256-6nUSjiT7okMlkN897OnDypwppYuK7JxTahOClXkAuwE=",
-      "SentenceBuilderWebApp.dll": "sha256-OaJsx\/DmDr0nYWJRHNWT0MGdn3J9F\/U6OLoh3gna6NU="
+      "SentenceBuilderWebApp.dll": "sha256-4j0ArGl+CqYvscCQr4AsTDO3dc38g6st\/joBqM+gqcg="
     },
     "extensions": null,
     "lazyAssembly": null,
     "libraryInitializers": null,
     "pdb": {
-      "SentenceBuilderWebApp.pdb": "sha256-TPDkeXtmXWkpTqzeZyEnOPlnOB7sMRL\/\/A4Nl9nb\/BQ="
+      "SentenceBuilderWebApp.pdb": "sha256-08UxdusOz1Th\/J97DQaUMplgA8h83YvxPfn1ovVryjE="
     },
     "runtime": {
       "dotnet.6.0.16.4skt2354i6.js": "sha256-GT2gK+GjOisRXJY+9yh6H8s6K\/KDIsaFMFIgWvAnttY=",

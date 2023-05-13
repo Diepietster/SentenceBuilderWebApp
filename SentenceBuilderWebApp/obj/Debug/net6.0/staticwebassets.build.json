@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "l2B3iDs6qyyq/CW+Foo5eBr04rAuPhJZjIXbHrB+8PI=",
+  "Hash": "56gMZPtb8TdSMQ2JWsMGuIxlgEXCaseqgXpOsYyg9HI=",
   "Source": "SentenceBuilderWebApp",
   "BasePath": "/",
   "Mode": "Root",
@@ -16,6 +16,23 @@
     }
   ],
   "Assets": [
+    {
+      "Identity": "C:\\Users\\piete\\.nuget\\packages\\blazored.toast\\4.1.0\\staticwebassets\\Blazored.Toast.bundle.scp.css",
+      "SourceId": "Blazored.Toast",
+      "SourceType": "Package",
+      "ContentRoot": "C:\\Users\\piete\\.nuget\\packages\\blazored.toast\\4.1.0\\staticwebassets\\",
+      "BasePath": "_content/Blazored.Toast",
+      "RelativePath": "Blazored.Toast.bundle.scp.css",
+      "AssetKind": "All",
+      "AssetMode": "Reference",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "ScopedCss",
+      "AssetTraitValue": "ProjectBundle",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "C:\\Users\\piete\\.nuget\\packages\\blazored.toast\\4.1.0\\staticwebassets\\Blazored.Toast.bundle.scp.css"
+    },
     {
       "Identity": "C:\\Users\\piete\\OneDrive\\Desktop\\C#_Programs\\SentenceBuilderWebApp\\SentenceBuilderWebApp\\bin\\Debug\\net6.0\\wwwroot\\_framework\\blazor.boot.json",
       "SourceId": "SentenceBuilderWebApp",
@@ -49,6 +66,23 @@
       "CopyToOutputDirectory": "PreserveNewest",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "C:\\Users\\piete\\.nuget\\packages\\microsoft.aspnetcore.components.webassembly\\6.0.15\\build\\net6.0\\blazor.webassembly.js"
+    },
+    {
+      "Identity": "C:\\Users\\piete\\OneDrive\\Desktop\\C#_Programs\\SentenceBuilderWebApp\\SentenceBuilderWebApp\\bin\\Debug\\net6.0\\wwwroot\\_framework\\Blazored.Toast.dll",
+      "SourceId": "SentenceBuilderWebApp",
+      "SourceType": "Computed",
+      "ContentRoot": "C:\\Users\\piete\\OneDrive\\Desktop\\C#_Programs\\SentenceBuilderWebApp\\SentenceBuilderWebApp\\bin\\Debug\\net6.0\\wwwroot\\",
+      "BasePath": "/",
+      "RelativePath": "_framework/Blazored.Toast.dll",
+      "AssetKind": "Build",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "BlazorWebAssemblyResource",
+      "AssetTraitValue": "runtime",
+      "CopyToOutputDirectory": "PreserveNewest",
+      "CopyToPublishDirectory": "Never",
+      "OriginalItemSpec": "C:\\Users\\piete\\.nuget\\packages\\blazored.toast\\4.1.0\\lib\\net6.0\\Blazored.Toast.dll"
     },
     {
       "Identity": "C:\\Users\\piete\\OneDrive\\Desktop\\C#_Programs\\SentenceBuilderWebApp\\SentenceBuilderWebApp\\bin\\Debug\\net6.0\\wwwroot\\_framework\\dotnet.6.0.16.4skt2354i6.js",
@@ -6494,6 +6528,23 @@
       "OriginalItemSpec": "C:\\Users\\piete\\OneDrive\\Desktop\\C#_Programs\\SentenceBuilderWebApp\\SentenceBuilderWebApp\\bin\\Debug\\net6.0\\wwwroot\\_framework\\System.IO.FileSystem.AccessControl.dll"
     },
     {
+      "Identity": "C:\\Users\\piete\\OneDrive\\Desktop\\C#_Programs\\SentenceBuilderWebApp\\SentenceBuilderWebApp\\obj\\Debug\\net6.0\\build-gz\\waPd9+g0.gz",
+      "SourceId": "SentenceBuilderWebApp",
+      "SourceType": "Computed",
+      "ContentRoot": "C:\\Users\\piete\\OneDrive\\Desktop\\C#_Programs\\SentenceBuilderWebApp\\SentenceBuilderWebApp\\bin\\Debug\\net6.0\\wwwroot\\",
+      "BasePath": "/",
+      "RelativePath": "_framework/Blazored.Toast.dll.gz",
+      "AssetKind": "Build",
+      "AssetMode": "All",
+      "AssetRole": "Alternative",
+      "RelatedAsset": "C:\\Users\\piete\\OneDrive\\Desktop\\C#_Programs\\SentenceBuilderWebApp\\SentenceBuilderWebApp\\bin\\Debug\\net6.0\\wwwroot\\_framework\\Blazored.Toast.dll",
+      "AssetTraitName": "Content-Encoding",
+      "AssetTraitValue": "gzip",
+      "CopyToOutputDirectory": "PreserveNewest",
+      "CopyToPublishDirectory": "Never",
+      "OriginalItemSpec": "C:\\Users\\piete\\OneDrive\\Desktop\\C#_Programs\\SentenceBuilderWebApp\\SentenceBuilderWebApp\\bin\\Debug\\net6.0\\wwwroot\\_framework\\Blazored.Toast.dll"
+    },
+    {
       "Identity": "C:\\Users\\piete\\OneDrive\\Desktop\\C#_Programs\\SentenceBuilderWebApp\\SentenceBuilderWebApp\\obj\\Debug\\net6.0\\build-gz\\WF4+6IFJ.gz",
       "SourceId": "SentenceBuilderWebApp",
       "SourceType": "Computed",
@@ -7189,23 +7240,6 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\manifest.json"
-    },
-    {
-      "Identity": "C:\\Users\\piete\\OneDrive\\Desktop\\C#_Programs\\SentenceBuilderWebApp\\SentenceBuilderWebApp\\wwwroot\\sample-data\\weather.json",
-      "SourceId": "SentenceBuilderWebApp",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\piete\\OneDrive\\Desktop\\C#_Programs\\SentenceBuilderWebApp\\SentenceBuilderWebApp\\wwwroot\\",
-      "BasePath": "/",
-      "RelativePath": "sample-data/weather.json",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\sample-data\\weather.json"
     }
   ]
 }

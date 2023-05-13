@@ -1,0 +1,182 @@
+﻿@page "/buildsentence"
+@using SentenceBuilderWebApp.Models;
+@using SentenceBuilderWebApp.Models.DTOModels;
+@inject SentenceBuilderWebApp.APIManager.Service.APICallService api;
+@inject NavigationManager navigate;
+@inject IToastService toast;
+
+<div class="modal" data-bs-backdrop="static" id="builSentenceModal" style="width: 75% !important; height: 75%; display:block; position:relative;">
+    <div class="modal-dialog modal-dialog-scrollable" role="document" style="width: 75%!important;max-width: 75% !important; height: 75%; position:relative;">
+        <div class="modal-content" style="width: 100% !important; height: 75%;">
+            <div class="modal-header">
+                <h5 class="modal-title">
+                    Build New Sentence
+                </h5>
+                <button type="button" class="close cp-btn btn-danger" aria-label="close" @onclick="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <EditForm EditContext="@editContext" OnValidSubmit="AddWordToSentence">
+            <DataAnnotationsValidator />
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col">
+                            <h5>Word Type</h5>
+                            <InputSelect ValueExpression="@(() => wordsWordToSentence.WordTypeId)" Value="@wordsWordToSentence.WordTypeId" ValueChanged="@((int value) => WordTypeChange(value))" class="form-select" >
+                                <option value="">Please Select a Word Type</option>
+                                @if(wordType != null || wordType.Count > 0)
+                                {
+                                    @foreach(var item in wordType)
+                                    {
+                                        <option value="@item.WordTypeId">@item.WordTypeDesc</option>
+                                    }
+                                }
+                            </InputSelect>
+                            <ValidationMessage For=@(() => wordsWordToSentence.WordTypeId) />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <h5>Word</h5>
+                            <InputSelect ValueExpression="@(() => wordsWordToSentence.WordId)" Value="@wordsWordToSentence.WordId" ValueChanged="@((int value) => WordChange(value))" class="form-select" >
+                                <option value="">Please Select a Word Type</option>
+                                @if(wordsByType != null || wordsByType.Count > 0)
+                                {
+                                    @foreach(var item in wordsByType)
+                                    {
+                                        <option value="@item.WordId">@item.Word</option>
+                                    }
+                                }
+                            </InputSelect>
+                            <ValidationMessage For=@(() => wordsWordToSentence.WordId) />
+                        </div>
+                    </div>
+                    <br />
+                    <div class="row">
+                        <div lass="col">
+                            <button type="submit" class="btn btn-success" style="float: right; margin-right: 10px" @onclick="AddWordToSentence">Add Word To Sentence</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <div class="row">
+                        <div class="col">
+                            <button @onclick="BuildSentence" class="btn btn-success">Build Sentence</button>
+                            <button class="btn btn-dark" @onclick="Close">Cancel</button>
+                        </div>
+                    </div>
+                </div>
+            </EditForm>
+        </div>
+    </div>
+</div>
+
+@code {
+    public List<WordType> wordType { get; set; } = new List<WordType>();
+    public List<Words> wordsByType { get; set; } = new List<Words>();
+    public List<string> addwordsToSentence { get; set; } = new List<string>();
+    private Words wordsWordToSentence = new Words();
+    private EditContext editContext;
+
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            editContext = new(wordsWordToSentence);
+            wordType = await api.GetWordTypesAsync();
+        }
+        catch(Exception ex)
+        {
+            toast.ShowError(ex.Message);
+        }
+    }
+
+    async Task WordTypeChange(int value)
+    {
+        try
+        {
+            wordsWordToSentence.WordTypeId = value;
+            await GetAllWordsByType(value);
+        }
+        catch (Exception ex)
+        {
+            toast.ShowError(ex.Message);
+        }
+    }
+
+    async Task WordChange(int value)
+    {
+        try
+        {
+            wordsWordToSentence.WordId = value;
+        }
+        catch (Exception ex)
+        {
+            toast.ShowError(ex.Message);
+        }
+    }
+
+    public async Task GetAllWordsByType(int wordTypeId)
+    {
+        try
+        {
+            wordsByType = await api.GetWordsByTypeAsync(wordTypeId);
+        }
+        catch(Exception ex)
+        {
+            toast.ShowError(ex.Message);
+        }
+    }
+
+    public async Task AddWordToSentence()
+    {
+        try
+        {
+            string addword = wordsByType.Where(x => x.WordId == wordsWordToSentence.WordId).FirstOrDefault().Word;
+            addwordsToSentence.Add(addword);
+            toast.ShowSuccess("Added word to sentence!");
+        }
+        catch(Exception ex)
+        {
+            toast.ShowError(ex.Message);
+        }
+    }
+
+    public async Task BuildSentence()
+    {
+        try
+        {
+            string sentence = string.Empty;
+            if(addwordsToSentence != null && addwordsToSentence.Count > 0)
+            {
+                foreach(var item in addwordsToSentence)
+                {
+                    sentence = sentence + item + " ";
+                }
+            }
+
+            if(sentence != string.Empty)
+            {
+                var response = await api.CreateSentene(sentence);
+
+                if(response.Success)
+                {
+                    toast.ShowSuccess("Created new sentence!");
+                    navigate.NavigateTo("/sentences");
+                }
+            }
+
+        }
+        catch(Exception ex)
+        {
+            toast.ShowError(ex.Message);
+        }
+    }
+
+    void Close()
+    {
+        navigate.NavigateTo("/sentences");
+    }
+
+}
+

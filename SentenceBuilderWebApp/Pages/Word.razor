@@ -1,59 +1,86 @@
 ﻿@page "/words"
 @using SentenceBuilderWebApp.Models;
 @inject SentenceBuilderWebApp.APIManager.Service.APICallService api;
+@inject IToastService toast;
 
 <PageTitle>Words</PageTitle>
 
-<h1>Words</h1>
+<div class="card">
+    <div>
+        <h1 style="text-align:center">Words</h1>
+    </div>
+</div>
 
-<a class="btn btn-primary" href="/addword">Add Word</a>
-<div>
-    <label>Select Word Type: </label>
-    @if (WordTypes != null)
-    {
-        <select class="form-select" @onchange="(e)=>WordTypeChange(e)">
-            <option value="">Please select word type</option>
-            @foreach(var type in WordTypes)
-            {
-                <option value="@type.WordTypeId">@type.WordTypeDesc</option>
-            }
-        </select>
-    }
+<br />
+<a class="btn btn-success" href="/addword">Add Word</a>
+<br />
+<br />
 
-    @if(getWords)
-    {
-        @if (words == null || words.Count <= 0)
+<div class="card">
+    <div style="margin-top: 20px; margin-left: 20px; margin-right: 20px; margin-bottom: 20px;">
+        <label>Select Word Type: </label>
+    
+        @if (WordTypes != null)
         {
-            <p><em>Loading...</em></p>
+            <select class="form-select" @onchange="(e)=>WordTypeChange(e)">
+                <option value="0">Please select word type</option>
+                @foreach(var type in WordTypes)
+                {
+                    <option value="@type.WordTypeId">@type.WordTypeDesc</option>
+                }
+            </select>
         }
-        else
+
+        @if(getWords)
         {
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Word</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach (var word in words)
-                    {
+            @if (wordsToDisplay == null || wordsToDisplay.Count <= 0)
+            {
+                <p><em>Loading...</em></p>
+            }
+            else
+            {
+                <table class="table">
+                    <thead>
                         <tr>
-                            <td>@word.WordId</td>
-                            <td>@word.Word</td>
+                            <th>ID</th>
+                            <th>Word</th>
                         </tr>
-                    }
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        @foreach (var word in wordsToDisplay)
+                        {
+                            <tr>
+                                <td>@word.WordId</td>
+                                <td>@word.Word</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            }
+        }
+    </div>
+</div>
+<br />
+<div>
+    @if(totalPages > 1)
+    {
+        @for(int i = 0; i < totalPages; i++)
+        {
+            var displayNum = i + 1;
+            <button class="btn btn-primary" style="width: 40px; height: 40px;" @onclick="(() => Paging(displayNum))">@displayNum</button>
         }
     }
 </div>
 
 @code {
     public List<Words> words { get; set; } = new();
+    public List<Words> wordsToDisplay { get; set; } = new();
     public List<WordType> WordTypes { get; set; } = new();
     public int selectedWordType { get; set; }
     public bool getWords = false;
+    public int pageNumber { get; set; } = 1;
+    public int pagesize { get; set; } = 10;
+    public int totalPages { get; set; }
 
     protected override async Task OnInitializedAsync()
     {
@@ -65,14 +92,27 @@
         try
         {
             getWords = true;
-            selectedWordType = Convert.ToInt32(e.Value);
-            words = await api.GetWordsByTypeAsync(selectedWordType);
+
+            if(Convert.ToInt32(e.Value) != 0)
+            {
+                selectedWordType = Convert.ToInt32(e.Value);
+                words = await api.GetWordsByTypeAsync(selectedWordType);
+                await Paging(pageNumber);
+            }
+
         }
         catch (Exception ex)
         {
-            //add toastie
-            throw;
+
+            toast.ShowError(ex.Message);
         }
+    }
+
+    public async Task Paging(int pageNumber)
+    {
+        totalPages = words.Count % pagesize != 0 ? words.Count / pagesize + 1 : words.Count / pagesize;
+
+        wordsToDisplay = words.Skip((pageNumber - 1) * pagesize).Take(pagesize).ToList();
     }
 
 }
