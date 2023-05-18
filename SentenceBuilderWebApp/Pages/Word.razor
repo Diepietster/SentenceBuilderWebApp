@@ -111,8 +111,7 @@
     public async Task Paging(int pageNumber)
     {
         totalPages = words.Count % pagesize != 0 ? words.Count / pagesize + 1 : words.Count / pagesize;
-
-        wordsToDisplay = words.Skip((pageNumber - 1) * pagesize).Take(pagesize).ToList();
+        wordsToDisplay = words.OrderBy(x => x.Word).Skip((pageNumber - 1) * pagesize).Take(pagesize).ToList();
     }
 
 }
